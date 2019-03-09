@@ -22,6 +22,21 @@ def number_of_digits(x):
     x = x//10
   return digits
  
+#Test for Fibonacci Number############################################################
+def is_fib(n):
+  num1 = 1
+  num2 = 1
+  while True:
+    if num2 <= n:
+      if num2 == n:
+        return True
+      else:
+        temp_num = num2
+        num2 += num1
+        num1 = temp_num
+   else:
+        return False
+        
 #Sum of First n Odd Numbers############################################################
 #Sums first n odd integers from 1 (inclusive) to n
 
@@ -35,6 +50,7 @@ def sum_odd_n(n):
     return total
 
 #Iterative
+
 #Using for loop
 def sum_odd_n(n):
   total = 0
@@ -52,3 +68,116 @@ def sum_odd_n(n):
     current_number += 2
     counter += 1
   return total
+  
+#Sum of First n Squares############################################################
+#Recursive
+def sum_n_squares(n):
+  if n <= 1:
+    return 1
+  else:
+    return n ** 2 + sum_n_squares(n - 1)
+    
+#Iterative
+
+#Using for loop
+def sum_n_squares(n):
+  total = 0
+  for counter in range(n + 1):
+    total += i**2
+    counter += 1
+  return total
+  
+#Using while loop
+def sum_n_squares(n):
+  counter = 1
+  total = 0
+  while counter <= n:
+    total += counter**2
+    counter += 1
+  return total
+ 
+#Sum of Factorials#################################################################
+#Returns sum of factorials of non-negative even numbers that are less than or equal to n
+def factorials(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorials(n - 1)
+
+#Sum of Even Factorials############################################################
+#Returns sum of factorials of non-negative even numbers that are less than or equal to n
+#Recursive
+def factorials(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorials(n - 1)
+
+def sum_even_factorials(n):
+  total = 0
+  for i in range(n + 1):
+    if i % 2 == 0:
+      total += factorials(i)
+  return total
+
+#Iterative
+def sum_even_factorials(n):
+  current_fact = 1
+  total = 0
+  for i in range(1, n + 1):
+    current_fact *= i
+    if i % 2 == 0:
+      total += current_fact
+  return total
+  
+#Odd Even Sums############################################################
+#Takes in a tuple of numbers
+#Returns a tuple of two elements: (sum of all odd-ranked numbers in the input tuple, sum of all even-ranked elements in the input)
+def odd_even_sums(tuple):
+  odd_sum = 0
+  even_sum = 0
+  for i in range(len(tup)):
+    if i % 2 == 0:
+      even_sum += tup[i]
+    else:
+      odd_sum += tup[i]
+  return (even_sum, odd_sum)
+
+#Counting Combinations############################################################
+#Returns number of ways to choose m different items from a set of n distinct items
+def num_combination(n, m):
+  if m == 0:
+    return 1
+  elif m > n:
+    return 0
+  return num_combination(n - 1, m - 1) + num_combination(n - 1, m)
+  
+#TUPLES#############################################################################
+
+#Change Value Inside Tuples#########################################################
+#Takes in three parameters: a tuple, an index, and a new value
+#Changes the value at the index to the new value
+#If index is out of range, return the original tuple
+def change_value_at_index(tpl, index, value):
+  if index not in range(-len(tpl), len(tpl)):
+    return tpl
+  return tpl[:index] + (value, ) + tpl[index + 1:]
+ 
+#Max and Min (From Tuples)##########################################################
+#Accepts a tuple containing integers as an argument
+#Returns largest and smallest integer within the tuple
+def max_and_min(tup):
+  if len(tup) == 1:
+    return (tup[0], tup[1])
+    
+  max_num = tup[0]
+  min_num = tup[1]
+  for i in tup:
+    if i > max_num:
+      max_num = max_num - max_num + i
+    elif i < min_num:
+      min_num = min_num - min_num + i
+  return (max_num, min_num)
+  
+#HIGHER ORDER FUNCTIONS
+ 
