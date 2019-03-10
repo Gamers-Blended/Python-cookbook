@@ -180,4 +180,58 @@ def max_and_min(tup):
   return (max_num, min_num)
   
 #HIGHER ORDER FUNCTIONS
- 
+
+#Summation
+#Returns total sum from terms of a to b
+def sum(term, a, next, b):
+  if a > b:
+    return 0
+  else:
+    return term(a) + sum(term, next(a), next, b)
+   
+#Product
+#Returns product from terms of a to b
+def product(term, a, next, b):
+  if a > b:
+    return 1
+  else:
+    return term(a) * product(term, next(a), next, b)
+    
+ #Fold
+ #Performs op onto each output of fn
+ def fold(op, fn, n):
+  if n == 0:
+    return fn(0)
+  else:
+    return op(fn(n), fold(op, fn, n - 1))
+    
+ #Enumerate
+ #For creating tuples from a set of integers
+ def enumerate_interval(low, high):
+  return tuple(range(low, high + 1))
+  
+ #Map
+ #Peforms a function onto each element in the input tuple
+ def map(fn, seq):
+  if seq == ():
+    return ()
+  else:
+    return (fn(seq[0]), ) + map(fn, seq[1:])
+    
+ #Filter
+ #Performs a filter in each element in the input tuple
+ def filter(pred, seq):
+  if seq == ():
+    return ()
+  elif pred(seq[0]):
+    return (seq[0], ) + filter(pred, seq[1:])
+  else:
+    return filter(pred, seq[1:])
+    
+ #Accumulate
+ #Performs fn onto each element in the input tuple
+ def accumulate(fn, initial, seq):
+  if seq == ():
+    return initial
+  else:
+    return fn(seq[0], accumulate(fn, initial, seq[1:]))
