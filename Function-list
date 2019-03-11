@@ -9,20 +9,20 @@ __________          __  .__                    _________                __   ___
 # version 1 - 5 March 2019 (Tue)
 # A list of general functions
 
-#Digit Counting############################################################
-#Returns number of digits in an integer
-#Assume that the integers are non-negative and will not begin with the number 0 other than the integer 0 itself.
+# Digit Counting#############################################################################
+# Returns number of digits in an integer
+# Assumes integers are non-negative and will not begin with 0 other than the integer 0 itself
 
 def number_of_digits(x):
   return len(str(x))
 
-#Recursive
+# Recursive
 def number_of_digits(x):
   if x//10 == 0:
     return 1
   return 1 + number_of_digits(x//10)
  
-#Iterative
+# Iterative
 def number_of_digits(x):
   digits = 1
   while x//10 != 0:
@@ -30,7 +30,8 @@ def number_of_digits(x):
     x = x//10
   return digits
  
-#Test for Fibonacci Number############################################################
+# Test for Fibonacci Number##################################################################
+# Returns True if input is a fibonacci number
 def is_fib(n):
   num1 = 1
   num2 = 1
@@ -45,10 +46,10 @@ def is_fib(n):
    else:
         return False
         
-#Sum of First n Odd Numbers############################################################
-#Sums first n odd integers from 1 (inclusive) to n
+# Sum of First n Odd Numbers#################################################################
+# Sums first n odd integers from 1 (inclusive) to n
 
-#Recursive
+# Recursive
 def sum_odd_n(n):
   total = 0
   if n <= 1:
@@ -57,16 +58,16 @@ def sum_odd_n(n):
     total = sum_odd_n(n-1) + (2 * n - 1)
     return total
 
-#Iterative
+# Iterative
 
-#Using for loop
+# for loop
 def sum_odd_n(n):
   total = 0
   for i in range(1, 2 * n, 2):
     total += 1
    return total
 
-#Using while loop
+# while loop
 def sum_odd_n(n):
   total = 0
   current_number = 1
@@ -77,17 +78,17 @@ def sum_odd_n(n):
     counter += 1
   return total
   
-#Sum of First n Squares############################################################
-#Recursive
+# Sum of First n Squares#####################################################################
+# Recursive
 def sum_n_squares(n):
   if n <= 1:
     return 1
   else:
     return n ** 2 + sum_n_squares(n - 1)
     
-#Iterative
+# Iterative
 
-#Using for loop
+# for loop
 def sum_n_squares(n):
   total = 0
   for counter in range(n + 1):
@@ -95,7 +96,7 @@ def sum_n_squares(n):
     counter += 1
   return total
   
-#Using while loop
+# while loop
 def sum_n_squares(n):
   counter = 1
   total = 0
@@ -104,17 +105,17 @@ def sum_n_squares(n):
     counter += 1
   return total
  
-#Sum of Factorials#################################################################
-#Returns sum of factorials of non-negative even numbers that are less than or equal to n
+# Sum of Factorials########################################################################
+# Returns sum of factorials of non-negative even numbers <= n
 def factorials(n):
   if n == 0:
     return 1
   else:
     return n * factorials(n - 1)
 
-#Sum of Even Factorials############################################################
-#Returns sum of factorials of non-negative even numbers that are less than or equal to n
-#Recursive
+# Sum of Even Factorials###################################################################
+# Returns sum of factorials of non-negative even numbers <= n
+# Recursive
 def factorials(n):
   if n == 0:
     return 1
@@ -128,7 +129,7 @@ def sum_even_factorials(n):
       total += factorials(i)
   return total
 
-#Iterative
+# Iterative
 def sum_even_factorials(n):
   current_fact = 1
   total = 0
@@ -137,22 +138,9 @@ def sum_even_factorials(n):
     if i % 2 == 0:
       total += current_fact
   return total
-  
-#Odd Even Sums############################################################
-#Takes in a tuple of numbers
-#Returns a tuple of two elements: (sum of all odd-ranked numbers in the input tuple, sum of all even-ranked elements in the input)
-def odd_even_sums(tuple):
-  odd_sum = 0
-  even_sum = 0
-  for i in range(len(tup)):
-    if i % 2 == 0:
-      even_sum += tup[i]
-    else:
-      odd_sum += tup[i]
-  return (even_sum, odd_sum)
 
-#Counting Combinations############################################################
-#Returns number of ways to choose m different items from a set of n distinct items
+# Counting Combinations######################################################################
+# Returns number of ways to choose m different items from a set of n distinct items
 def num_combination(n, m):
   if m == 0:
     return 1
@@ -160,20 +148,31 @@ def num_combination(n, m):
     return 0
   return num_combination(n - 1, m - 1) + num_combination(n - 1, m)
   
-#TUPLES#############################################################################
+  
+# TUPLES#####################################################################################
 
-#Change Value Inside Tuples#########################################################
-#Takes in three parameters: a tuple, an index, and a new value
-#Changes the value at the index to the new value
-#If index is out of range, return the original tuple
+# Change Value Inside Tuples#################################################################
+# Takes in 3 parameters: a tuple, an index, and a new value
+# Changes the value at the index to new value
+# If index is out of range, return original tuple
 def change_value_at_index(tpl, index, value):
   if index not in range(-len(tpl), len(tpl)):
     return tpl
   return tpl[:index] + (value, ) + tpl[index + 1:]
  
-#Max and Min (From Tuples)##########################################################
-#Accepts a tuple containing integers as an argument
-#Returns largest and smallest integer within the tuple
+# Even Rank##################################################################################
+# Takes in a tuple as its only argument
+# Returns a tuple containing all the elements of even rank
+# (i.e. every second element from the left) from input tuple
+def even_rank(tup):
+ result = ()
+ for i in range(1, len(tup), 2):
+   result += (tup[i], )
+ return result
+ 
+# Max and Min (From Tuples)##################################################################
+# Accepts a tuple containing integers as an argument
+# Returns largest and smallest integer within tuple
 def max_and_min(tup):
   if len(tup) == 1:
     return (tup[0], tup[1])
@@ -187,48 +186,113 @@ def max_and_min(tup):
       min_num = min_num - min_num + i
   return (max_num, min_num)
   
-#HIGHER ORDER FUNCTIONS
+# Odd Even Sums (From Tuples)#################################################################
+# Takes in a tuple of numbers
+# Returns a tuple of 2 elements: (sum of all odd-ranked numbers in input tuple, sum of all even-ranked elements in input)
+def odd_even_sums(tuple):
+  odd_sum = 0
+  even_sum = 0
+  for i in range(len(tup)):
+    if i % 2 == 0:
+      even_sum += tup[i]
+    else:
+      odd_sum += tup[i]
+  return (even_sum, odd_sum)
 
-#Summation
-#Returns total sum from terms of a to b
+# Heron’s Formula (Area of Triangle)
+# area = math.sqrt(s(s - a)(s - b)(s - c)) where s = (a+b+c)/2
+# Takes 3 arguments a, b, c
+# Returns area of a triangle with sides of length a, b, c
+from math import *
+
+def magnitude(x1, y1, x2, y2):
+    return abs(sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2))
+
+def area(x1, y1, x2, y2, x3, y3):
+#Returns area of triangle
+    a = magnitude(x1, y1, x2, y2)
+    b = magnitude(x1, y1, x3, y3)
+    c = magnitude(x2, y2, x3, y3)
+    return herons_formula(a, b, c)
+
+def herons_formula(a, b, c):
+    s = (a + b + c)/2
+    return sqrt(s * (s - a) * (s - b) * (s - c))
+
+# Composite Simpson's Rule
+# h/3 * (y0 + 4y1 + 2y2 + 4y3 + 2y4 + ... + yn)
+# h = (b - a)/n, for some even integer n, and yk = f(a+ kh), k = 0, 1, ..., n
+# Increasing n increases accuracy of approximation
+def calc_integral(f, a, b, n):
+    h = (b - a)/n
+    x = f(a) = f(b)
+    for i in range(1, n, 2):
+        x = x + 4 * f(a + i * h)
+    for i in range(2, n, 2):
+        x = x + 2 * f(a + i * h)
+    return (h/3) * x
+    
+# Hanoi
+# Define a disk move to be a pair of 2 numbers: source pole and destination pole
+# For example, (1, 3) indicates move of a disk from first pole to third
+# Takes in 4 parameters:
+# 1.	the number of disks
+# 2.	the source pole
+# 3.	the destination pole
+# 4.	the auxiliary pole
+# Returns a tuple of disk moves that, if executed in that sequence, will move all disks from source pole to destination pole and comply with rules of Tower of Hanoi
+def hanoi(size, src, dsc, aux):
+    if n == 0:
+        return ()
+    if n == 1:
+        return ((src, dsc), )
+    seq = hanoi(size - 1, src, aux, dsc)
+    seq += ((src, dsc), )
+    seq += hanoi(size - 1, aux, dsc, src)
+    return seq
+ 
+#HIGHER ORDER FUNCTIONS########################################################################
+
+# Summation
+# Returns total sum from terms of a to b
 def sum(term, a, next, b):
   if a > b:
     return 0
   else:
     return term(a) + sum(term, next(a), next, b)
    
-#Product
-#Returns product from terms of a to b
+# Product
+# Returns product from terms of a to b
 def product(term, a, next, b):
   if a > b:
     return 1
   else:
     return term(a) * product(term, next(a), next, b)
     
- #Fold
- #Performs op onto each output of fn
- def fold(op, fn, n):
+# Fold
+# Performs op onto each output of fn
+def fold(op, fn, n):
   if n == 0:
     return fn(0)
   else:
     return op(fn(n), fold(op, fn, n - 1))
     
- #Enumerate
- #For creating tuples from a set of integers
- def enumerate_interval(low, high):
+# Enumerate
+# For creating tuples from a set of integers
+def enumerate_interval(low, high):
   return tuple(range(low, high + 1))
   
- #Map
- #Peforms a function onto each element in the input tuple
- def map(fn, seq):
+# Map
+# Peforms a function onto each element in the input tuple
+def map(fn, seq):
   if seq == ():
     return ()
   else:
     return (fn(seq[0]), ) + map(fn, seq[1:])
     
- #Filter
- #Performs a filter in each element in the input tuple
- def filter(pred, seq):
+# Filter
+# Performs a filter in each element in the input tuple
+def filter(pred, seq):
   if seq == ():
     return ()
   elif pred(seq[0]):
@@ -236,10 +300,39 @@ def product(term, a, next, b):
   else:
     return filter(pred, seq[1:])
     
- #Accumulate
- #Performs fn onto each element in the input tuple
- def accumulate(fn, initial, seq):
+# Accumulate
+# Takes in a combiner function (of two arguments) that specifies how current term is to be combined with accumulation of preceding terms and a base value that specifies what value to use when the terms run out
+# Performs fn onto each element in the input tuple
+def accumulate(fn, initial, seq):
   if seq == ():
     return initial
   else:
     return fn(seq[0], accumulate(fn, initial, seq[1:]))
+    
+def accumulate(op, base, fn, a, next, b):
+    if a > b:
+        return base
+    return op(fn(a), accumulate(op, base, fn, next(a), next, b)
+# Geometric Series
+def fold2(op, term, a, next, b, base):
+    if a > b:
+        return base
+    else:
+        return op(term(a), fold2(op, term, next(a), next, b, base))
+        
+def geometric_series(a, r, n):
+    return fold2(
+        lambda x, y: x + y,
+        lambda x: a * (r ** x),
+        0,
+        lambda x: x + 1, n - 1,
+        0)
+      
+# Square Odd Terms, Even Terms Unchanged
+# Accepts a tuple
+# Returns a tuple with odd terms in tuple squared, even terms unchanged
+# eg: square_odd_terms((1, 2, 3, 4, 5)) returns (1, 2, 9, 4, 25)
+def square_odd_terms(tpl):
+    return map(lambda x: x ** 2 if x %2 != 0 else x, tpl)
+    
+
